@@ -25,9 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         edawindow.cpp \
-    person.cpp
+    person.cpp \
+    linkedlist.cpp
 
 HEADERS  += edawindow.h \
-    person.h
+    person.h \
+    linkedlist.h
 
 FORMS    += edawindow.ui

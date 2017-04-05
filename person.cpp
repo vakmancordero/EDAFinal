@@ -60,12 +60,5 @@ int Person::compareTo(Person person) {
 }
 
 QString Person::toString() {
-
-    QString stringSt;
-
-    stringSt.append(this->name);
-    stringSt.append(QString::number(this->age));
-
-    return stringSt;
-
+    return this->name + " - " + QString::number(this->age);
 }

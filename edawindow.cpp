@@ -10,12 +10,12 @@
 #include <QDateTime>
 
 #include "person.h"
+#include "linkedlist.h"
 
 EDAWindow::EDAWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::EDAWindow) {
 
     ui->setupUi(this);
-
 }
 
 EDAWindow::~EDAWindow() {
@@ -27,6 +27,10 @@ void EDAWindow::on_actionSalir_triggered() {
 }
 
 void EDAWindow::on_pathButton_clicked() {
+
+    LinkedList<int> list;
+
+    list.add(3);
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "C:\\", tr("Text Files (*.txt *.docx)"));
 
@@ -42,13 +46,6 @@ void EDAWindow::on_pathButton_clicked() {
 
 void EDAWindow::on_addAllButton_clicked() {
 
-    Person cordero("Arturo Cordero", 20);
-    Person muniz("Arturo Muniz", 25);
-
-    qDebug() << cordero.getName() << " - " << cordero.getAge() << endl;
-
-    qDebug() << cordero.compareTo(muniz) << endl;
-
     QString text = ui->pathLine->text();
 
     if (!text.isEmpty()) {
@@ -63,9 +60,14 @@ void EDAWindow::on_addAllButton_clicked() {
 
            while (!in.atEnd()) {
 
-               QString line = in.readLine().trimmed();
+               QStringList lineSplit = in.readLine().trimmed().split(";");
 
-               qDebug() << line << endl;
+               Person person(
+                       lineSplit.at(0).trimmed(),
+                       lineSplit.at(1).trimmed().toInt()
+               );
+
+               qDebug() << person.toString() << endl;
 
                /*
                binaryTreeAVL.add(line);
