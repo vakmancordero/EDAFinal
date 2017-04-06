@@ -8,9 +8,11 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
+#include <iostream>
 
-#include "person.h"
-#include "linkedlist.h"
+#include "quicksort.h"
+
+using namespace std;
 
 EDAWindow::EDAWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::EDAWindow) {
@@ -27,10 +29,6 @@ void EDAWindow::on_actionSalir_triggered() {
 }
 
 void EDAWindow::on_pathButton_clicked() {
-
-    LinkedList<int> list;
-
-    list.add(3);
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "C:\\", tr("Text Files (*.txt *.docx)"));
 
@@ -56,6 +54,8 @@ void EDAWindow::on_addAllButton_clicked() {
 
         if (inputFile.open(QIODevice::ReadOnly)) {
 
+           QuickSort<Person> quickSort;
+
            QTextStream in(&inputFile);
 
            while (!in.atEnd()) {
@@ -67,18 +67,23 @@ void EDAWindow::on_addAllButton_clicked() {
                        lineSplit.at(1).trimmed().toInt()
                );
 
-               qDebug() << person.toString() << endl;
-
-               /*
-               binaryTreeAVL.add(line);
-
-               QString localAppend = QString::number(number).append(";");
-
-               numbers.append(localAppend);
-               */
+               this->personsList.add(person);
 
                counter++;
 
+           }
+
+           for (int i = 0; i < personsList.size(); i++) {
+               qDebug() << personsList.get(i).toString() << endl;
+           }
+
+           quickSort.quickSort(
+                   this->personsList, 0,
+                   this->personsList.size() - 1
+           );
+
+           for (int i = 0; i < personsList.size(); i++) {
+               qDebug() << personsList.get(i).toString() << endl;
            }
 
            inputFile.close();

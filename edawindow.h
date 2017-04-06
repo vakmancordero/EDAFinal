@@ -2,6 +2,7 @@
 #define EDAWINDOW_H
 
 #include <QMainWindow>
+#include "linkedlist.h"
 
 namespace Ui {
 class EDAWindow;
@@ -13,6 +14,8 @@ class EDAWindow : public QMainWindow {
 public:
     explicit EDAWindow(QWidget *parent = 0);
     ~EDAWindow();
+
+    LinkedList<Person> personsList;
 
 private slots:
     void on_actionSalir_triggered();
