@@ -27,8 +27,6 @@ void Person::setAge(int age) {
 
 int Person::compareTo(Person person) {
 
-    qDebug() << "Comparando dos personas" << endl;
-
     int result = QString::compare(this->name, person.getName(), Qt::CaseInsensitive);
 
     if (result == 0) {

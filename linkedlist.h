@@ -20,7 +20,7 @@ public:
     void add(T value);
     T get(int index);
     void set(int index, T value);
-    void remove(T value);
+    void remove(int index);
     int size();
 
     list<T> list;
@@ -61,9 +61,12 @@ void LinkedList<T>::set(int index, T value) {
 }
 
 template <class T>
-void LinkedList<T>::remove(T value) {
+void LinkedList<T>::remove(int index) {
 
-    this->list.remove(value);
+    std::list<T>::iterator it = this->list.begin();
+    std::advance(it, index);
+
+    this->list.erase(it);
 }
 
 template <class T>

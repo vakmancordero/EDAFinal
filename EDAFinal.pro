@@ -25,11 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         edawindow.cpp \
-    person.cpp
+    person.cpp \
+    node.cpp \
+    binarytreeavl.cpp \
+    hashtable.cpp
 
 HEADERS  += edawindow.h \
     person.h \
     linkedlist.h \
-    quicksort.h
+    quicksort.h \
+    binarysearch.h \
+    node.h \
+    binarytreeavl.h \
+    hashtable.h
 
 FORMS    += edawindow.ui
